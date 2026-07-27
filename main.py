@@ -1,4 +1,4 @@
-from clientes import cadastrar_cliente
+from clientes import (cadastrar_cliente, listar_clientes)
 
 while True:
     print("----- MENU -----")
@@ -11,7 +11,7 @@ while True:
         if escolha == 1:
             cadastrar_cliente()
         elif escolha == 2:
-            pass
+            listar_clientes()
         elif escolha == 3:
             break
         else:
