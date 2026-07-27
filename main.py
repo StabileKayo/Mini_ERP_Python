@@ -1,3 +1,5 @@
+from clientes import cadastrar_cliente
+
 while True:
     print("----- MENU -----")
     print("1 - Cadastrar cliente")
@@ -7,7 +9,7 @@ while True:
     if escolha.isdigit():
         escolha = int(escolha)
         if escolha == 1:
-            pass
+            cadastrar_cliente()
         elif escolha == 2:
             pass
         elif escolha == 3:
