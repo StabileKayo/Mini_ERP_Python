@@ -1,6 +1,6 @@
 import os
 from database import conexao, cursor
-
+from mysql.connector import Error
 
 def cadastrar_cliente():
     os.system("cls")
@@ -11,24 +11,27 @@ def cadastrar_cliente():
 
     sql = "INSERT INTO clientes (nome, email, telefone) VALUES (%s, %s, %s)"
     valores = (nome, email, telefone)
-
-    cursor.execute(sql, valores)
-    conexao.commit()
-    print("Cliente cadastrado!")
-
+    try:
+        cursor.execute(sql, valores)
+        conexao.commit()
+        print("Cliente cadastrado!")
+    except Error as erro:
+        print(f"Erro ao cadastrar cliente:: {erro}")
 
 def listar_clientes():
     os.system("cls")
-    cursor.execute("SELECT * FROM clientes")
-    clientes = cursor.fetchall()
-    print("---- Lista de clientes ----")
-    for id_cliente, nome, email, telefone in clientes:
-        print("-" * 30)
-        print(f"Id: {id_cliente}")
-        print(f"Nome: {nome}")
-        print(f"Email: {email}")
-        print(f"Telefone: {telefone}")
-
+    try:
+        cursor.execute("SELECT * FROM clientes")
+        clientes = cursor.fetchall()
+        print("---- Lista de clientes ----")
+        for id_cliente, nome, email, telefone in clientes:
+            print("-" * 30)
+            print(f"Id: {id_cliente}")
+            print(f"Nome: {nome}")
+            print(f"Email: {email}")
+            print(f"Telefone: {telefone}")
+    except Error as erro:
+        print(f"Erro ao listar clientes: {erro}")
 
 def excluir_cliente():
     os.system("cls")
@@ -45,13 +48,15 @@ def excluir_cliente():
     sql = "DELETE FROM clientes WHERE id_cliente = %s"
     valores = (id_excluir,)
 
-    cursor.execute(sql, valores)
-    conexao.commit()
-    if cursor.rowcount > 0:
-        print("Cliente excluido com sucesso!")
-    else:
-        print("Nenhum cliente com esse Id")
-
+    try:
+        cursor.execute(sql, valores)
+        conexao.commit()
+        if cursor.rowcount > 0:
+            print("Cliente excluido com sucesso!")
+        else:
+            print("Nenhum cliente com esse Id")
+    except Error as erro:
+        print(f"Erro ao excluir cliente: {erro}")
 
 def atualizar_cliente():
     listar_clientes()
@@ -84,9 +89,12 @@ def atualizar_cliente():
         print("Digite um número válido")
         return
     sql = f"UPDATE clientes SET {coluna} = %s WHERE id_cliente = %s"
-    cursor.execute(sql, (novo_valor,id_atualizar))
-    conexao.commit()
-    if cursor.rowcount > 0:
-        print("Cliente atualizado com sucesso!")
-    else:
-        print("Nenhum cliente com esse Id")
+    try:
+        cursor.execute(sql, (novo_valor,id_atualizar))
+        conexao.commit()
+        if cursor.rowcount > 0:
+            print("Cliente atualizado com sucesso!")
+        else:
+            print("Nenhum cliente com esse Id")
+    except Error as erro:
+        print(f"Erro ao atualizar cliente: {erro}")
