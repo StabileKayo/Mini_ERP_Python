@@ -1,11 +1,16 @@
-from clientes import (cadastrar_cliente, listar_clientes, excluir_cliente)
+from clientes import (cadastrar_cliente, 
+    listar_clientes, 
+    excluir_cliente,
+    atualizar_cliente
+    )
 
 while True:
     print("-------- MENU --------")
     print("1 - Cadastrar cliente")
     print("2 - Listar clientes")
     print("3 - Excluir cliente")
-    print("4 - Sair")
+    print("4 - Atualizar cliente")
+    print("5 - Sair")
 
     escolha = input("Escolha: ")
     if escolha.isdigit():
@@ -17,6 +22,8 @@ while True:
         elif escolha == 3:
             excluir_cliente()
         elif escolha == 4:
+            atualizar_cliente()
+        elif escolha == 5:
             break
         else:
             print("Digite um número válido")

@@ -20,4 +20,4 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 - [x] Cadastrar cliente
 - [x] Listar clientes
 - [x] Excluir cliente
-- [ ] Editar cliente
+- [x] Editar cliente
