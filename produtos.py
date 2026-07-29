@@ -1,5 +1,7 @@
+import os
 from database import conexao, cursor
 from mysql.connector import Error 
+
 
 def cadastrar_produto():
     nome_produto = input("Digite o nome do produto: ")
@@ -14,3 +16,19 @@ def cadastrar_produto():
         print("Produto cadastrado com sucesso!")
     except Error as erro:
         print(f"Erro ao cadastrar produto: {erro}")
+
+
+def listar_produtos():
+    os.system("cls")
+    try:
+        cursor.execute("SELECT * FROM produtos")
+        produtos = cursor.fetchall()
+        print("---- Lista de produtos ----")
+        for id_produto, nome, preco, estoque in produtos:
+            print("-" * 30)
+            print(f"Id: {id_produto}")
+            print(f"Nome: {nome}")
+            print(f"Email: {preco}")
+            print(f"Telefone: {estoque}")
+    except Error as erro:
+        print(f"Erro ao listar clientes: {erro}")

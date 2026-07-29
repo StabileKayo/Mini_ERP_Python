@@ -23,7 +23,7 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 - [x] Editar cliente
 
 ### Produtos
-- [ ] Cadastrar produto
-- [ ] Listar produtos
+- [x] Cadastrar produto
+- [x] Listar produtos
 - [ ] Atualizar produto
 - [ ] Excluir produto

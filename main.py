@@ -5,7 +5,8 @@ from clientes import (
     atualizar_cliente
     )
 from produtos import(
-    cadastrar_produto
+    cadastrar_produto,
+    listar_produtos
 )
 
 
@@ -43,7 +44,8 @@ def menu_clientes():
 def menu_produtos():
     print("-------- MENU --------")
     print("1 - Cadastrar produto")
-    print("2 - Voltar")
+    print("2 - Listar produto")
+    print("3 - Voltar")
 
     escolha = input("Escolha: ")
 
@@ -53,11 +55,12 @@ def menu_produtos():
 
     escolha = int(escolha)
 
-    if escolha == 2:
+    if escolha == 3:
         return False
     if escolha == 1:
         cadastrar_produto()
-
+    if escolha == 2:
+        listar_produtos()
 
 while True:
     print("-------- MENU --------")
