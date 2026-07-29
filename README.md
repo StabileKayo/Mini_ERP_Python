@@ -25,5 +25,5 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 ### Produtos
 - [x] Cadastrar produto
 - [x] Listar produtos
+- [x] Excluir produto
 - [ ] Atualizar produto
-- [ ] Excluir produto

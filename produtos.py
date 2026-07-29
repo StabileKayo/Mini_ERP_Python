@@ -31,4 +31,33 @@ def listar_produtos():
             print(f"Email: {preco}")
             print(f"Telefone: {estoque}")
     except Error as erro:
-        print(f"Erro ao listar clientes: {erro}")
+        print(f"Erro ao listar produto: {erro}")
+
+
+def excluir_produto():
+    os.system("cls")
+    cursor.execute("SELECT id_produto, nome FROM produtos")
+    produtos = cursor.fetchall()
+    for id_produto, nome in produtos:
+        print("-" * 30)
+        print(f"Id: {id_produto}")
+        print(f"Nome: {nome}")
+
+    id_excluir = input("Digite o Id do produto que quer excluir: ")
+
+    if not id_excluir.isdigit():
+        print("Digite um id válido")
+        return
+    
+    sql = "DELETE FROM produtos WHERE id_produto =%s"
+    valores = (id_excluir,)
+
+    try:
+        cursor.execute(sql, valores)
+        conexao.commit()
+        if cursor.rowcount > 0:
+            print("Produto excluido com sucesso!")
+        else:
+            print("Nenhum produto com esse Id")
+    except Error as erro:
+        print(f"Erro ao excluir produto: {erro}")
