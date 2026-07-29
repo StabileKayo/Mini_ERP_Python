@@ -28,8 +28,8 @@ def listar_produtos():
             print("-" * 30)
             print(f"Id: {id_produto}")
             print(f"Nome: {nome}")
-            print(f"Email: {preco}")
-            print(f"Telefone: {estoque}")
+            print(f"Preço: {preco}")
+            print(f"Estoque: {estoque}")
     except Error as erro:
         print(f"Erro ao listar produto: {erro}")
 

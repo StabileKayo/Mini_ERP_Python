@@ -10,6 +10,22 @@ from produtos import(
     excluir_produto
 )
 
+VOLTAR = 5
+SAIR = 3
+
+ESCOLHAS_CLIENTE = {
+    1: cadastrar_cliente,
+    2: listar_clientes,
+    3: excluir_cliente,
+    4: atualizar_cliente
+}
+
+ESCOLHAS_PRODUTO = {
+    1: cadastrar_produto,
+    2: listar_produtos,
+    3: excluir_produto
+}
+
 
 def menu_clientes():
     print("-------- MENU --------")
@@ -22,24 +38,17 @@ def menu_clientes():
     escolha = input("Escolha: ")
 
     if not escolha.isdigit():
-        print("Digite um número ")
+        print("Digite um número válido")
         return True
     
     escolha = int(escolha)
 
-    if escolha == 5:
+    if escolha == VOLTAR:
         return False
-    elif escolha == 1:
-        cadastrar_cliente()
-    elif escolha == 2:
-        listar_clientes()
-    elif escolha == 3:
-        excluir_cliente()
-    elif escolha == 4:
-        atualizar_cliente()        
-    else:
+    if escolha not in ESCOLHAS_CLIENTE:
         print("Digite um número válido")
-    return True  
+        return True  
+    ESCOLHAS_CLIENTE[escolha]()
 
 
 def menu_produtos():
@@ -47,7 +56,7 @@ def menu_produtos():
     print("1 - Cadastrar produto")
     print("2 - Listar produto")
     print("3 - Excluir produto")
-    print("4 - Voltar")
+    print("5 - Voltar")
 
     escolha = input("Escolha: ")
 
@@ -57,14 +66,13 @@ def menu_produtos():
 
     escolha = int(escolha)
 
-    if escolha == 4:
+    if escolha == VOLTAR:
         return False
-    if escolha == 1:
-        cadastrar_produto()
-    if escolha == 2:
-        listar_produtos()
-    if escolha == 3:
-        excluir_produto()
+    if escolha not in ESCOLHAS_PRODUTO:
+        print("Digite um número válido")
+        return True
+    ESCOLHAS_PRODUTO[escolha]()
+
 
 while True:
     print("-------- MENU --------")
@@ -79,7 +87,7 @@ while True:
 
     escolha = int(escolha)
 
-    if escolha == 3:
+    if escolha == SAIR:
         break
     elif escolha == 1:
         menu_clientes()
