@@ -21,3 +21,9 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 - [x] Listar clientes
 - [x] Excluir cliente
 - [x] Editar cliente
+
+### Produtos
+- [ ] Cadastrar produto
+- [ ] Listar produtos
+- [ ] Atualizar produto
+- [ ] Excluir produto

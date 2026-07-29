@@ -2,6 +2,7 @@ import os
 from database import conexao, cursor
 from mysql.connector import Error
 
+
 def cadastrar_cliente():
     os.system("cls")
     print("---- Cadastro de cliente ----")
@@ -16,7 +17,8 @@ def cadastrar_cliente():
         conexao.commit()
         print("Cliente cadastrado!")
     except Error as erro:
-        print(f"Erro ao cadastrar cliente:: {erro}")
+        print(f"Erro ao cadastrar cliente: {erro}")
+
 
 def listar_clientes():
     os.system("cls")
@@ -32,6 +34,7 @@ def listar_clientes():
             print(f"Telefone: {telefone}")
     except Error as erro:
         print(f"Erro ao listar clientes: {erro}")
+
 
 def excluir_cliente():
     os.system("cls")
@@ -57,6 +60,7 @@ def excluir_cliente():
             print("Nenhum cliente com esse Id")
     except Error as erro:
         print(f"Erro ao excluir cliente: {erro}")
+
 
 def atualizar_cliente():
     listar_clientes()
