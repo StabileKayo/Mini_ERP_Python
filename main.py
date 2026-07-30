@@ -7,7 +7,8 @@ from clientes import (
 from produtos import(
     cadastrar_produto,
     listar_produtos,
-    excluir_produto
+    excluir_produto,
+    atualizar_produto
 )
 
 VOLTAR = 5
@@ -23,7 +24,8 @@ ESCOLHAS_CLIENTE = {
 ESCOLHAS_PRODUTO = {
     1: cadastrar_produto,
     2: listar_produtos,
-    3: excluir_produto
+    3: excluir_produto,
+    4: atualizar_produto
 }
 
 
@@ -56,6 +58,7 @@ def menu_produtos():
     print("1 - Cadastrar produto")
     print("2 - Listar produto")
     print("3 - Excluir produto")
+    print("4 - Atualizar produto")
     print("5 - Voltar")
 
     escolha = input("Escolha: ")

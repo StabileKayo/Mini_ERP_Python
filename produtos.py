@@ -61,3 +61,45 @@ def excluir_produto():
             print("Nenhum produto com esse Id")
     except Error as erro:
         print(f"Erro ao excluir produto: {erro}")
+
+
+def atualizar_produto():
+    listar_produtos()
+
+    id_atualizar = input("Digite o Id do produto que deseja atualizar: ")
+
+    if not id_atualizar.isdigit():
+        print("Digite um id válido")
+        return
+    print("1 - Nome")
+    print("2 - Preço")
+    print("3 - Estoque")
+    dado_atualizar = input("Digite o que deseja alterar: ")
+    if not dado_atualizar.isdigit():
+        print("Digite um número")
+        return
+    dado_atualizar = int(dado_atualizar)
+
+    if dado_atualizar == 1:
+        coluna = "nome"
+        novo_valor = input("Digite o novo nome: ")
+    elif dado_atualizar == 2:
+        coluna = "preco"
+        novo_valor = input("Digite o novo preço: ")
+    elif dado_atualizar == 3:
+        coluna = "estoque"
+        novo_valor = input("Digite o novo estoque: ")
+    else:
+        print("Digite um número válido")
+        return
+
+    sql = f"UPDATE produtos SET {coluna} = %s WHERE id_produto = %s"
+    try:
+        cursor.execute(sql, (novo_valor, id_atualizar))
+        conexao.commit()
+        if cursor.rowcount > 0:
+            print("Produto atualizado com sucesso!")
+        else:
+            print("Nenhum produto com esse Id")
+    except Error as erro:
+        print(f"Erro ao atualizar produto: {erro}")
