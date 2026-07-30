@@ -26,4 +26,12 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 - [x] Cadastrar produto
 - [x] Listar produtos
 - [x] Excluir produto
-- [ ] Atualizar produto
+- [x] Atualizar produto
+
+### Pedidos
+- [x] Criar pedido
+- [ ] Listar pedidos
+- [ ] Excluir pedido
+
+### Status do projeto
+Em desenvolvimento.

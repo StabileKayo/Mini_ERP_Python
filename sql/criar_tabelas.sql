@@ -11,3 +11,12 @@ CREATE TABLE produtos (
     preco DECIMAL(10,2) NOT NULL,
     estoque INT NOT NULL
 );
+
+CREATE TABLE pedidos (
+	id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (id_cliente)
+		REFERENCES clientes(id_cliente)
+);
