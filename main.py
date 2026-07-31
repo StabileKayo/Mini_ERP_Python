@@ -12,7 +12,8 @@ from produtos import(
 )
 from pedidos import(
     cadastrar_pedido,
-    listar_pedidos
+    listar_pedidos,
+    excluir_pedido
 )
 
 
@@ -35,7 +36,8 @@ ESCOLHAS_PRODUTO = {
 
 ESCOLHAS_PEDIDO = {
     1: cadastrar_pedido,
-    2: listar_pedidos
+    2: listar_pedidos,
+    3: excluir_pedido
 }
 
 
@@ -91,7 +93,8 @@ def menu_pedidos():
     print("-------- MENU --------")
     print("1 - Cadastrar pedido")
     print("2 - Listar pedidos")
-    print("3 - Voltar")
+    print("3 - Excluir pedido")
+    print("4 - Voltar")
 
     escolha = input("Escolha: ")
 
@@ -101,7 +104,7 @@ def menu_pedidos():
 
     escolha = int(escolha)
 
-    if escolha == 3:
+    if escolha == 4:
         return False
     if escolha not in ESCOLHAS_PEDIDO:
         print("Digite um número válido")

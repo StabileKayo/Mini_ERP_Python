@@ -30,7 +30,7 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 
 ### Pedidos
 - [x] Criar pedido
-- [ ] Listar pedidos
+- [x] Listar pedidos
 - [ ] Excluir pedido
 
 ### Status do projeto

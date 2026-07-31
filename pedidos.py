@@ -29,10 +29,10 @@ def cadastrar_pedido():
     except Error as erro:
         print(f"Erro ao criar pedido: {erro}")
 
+
 def listar_pedidos():
     os.system("cls")
     try:
-        
         sql = """SELECT
         p.id_pedido,
         c.nome,
@@ -54,3 +54,26 @@ def listar_pedidos():
 
     except Error as erro:
         print(f"Erro ao listar pedido: {erro}")
+
+
+def excluir_pedido():
+    os.system("cls")
+    listar_pedidos()
+    id_excluir = input("Digite o Id do pedido que deseja excluir: ")
+    if not id_excluir.isdigit():
+        print("Digite um número válido")
+        return
+    id_excluir = int(id_excluir)
+    sql = "DELETE FROM pedidos WHERE id_pedido = %s"
+    valores = (id_excluir,)
+
+    try:
+        cursor.execute(sql, valores)
+        conexao.commit()
+        if cursor.rowcount > 0:
+            print("Pedido excluido com sucesso")
+        else:
+            print("Nenhum pedido com esse Id")
+
+    except Error as erro:
+        print(f"Erro ao excluir pedido: {erro}")
