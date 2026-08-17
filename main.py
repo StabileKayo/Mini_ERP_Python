@@ -15,10 +15,12 @@ from pedidos import(
     listar_pedidos,
     excluir_pedido
 )
-
+from itens_pedido import(
+    adicionar_item
+)
 
 VOLTAR = 5
-SAIR = 4
+SAIR = 5
 
 ESCOLHAS_CLIENTE = {
     1: cadastrar_cliente,
@@ -38,6 +40,10 @@ ESCOLHAS_PEDIDO = {
     1: cadastrar_pedido,
     2: listar_pedidos,
     3: excluir_pedido
+}
+
+ESCOLHAS_ITEM = {
+    1: adicionar_item
 }
 
 
@@ -112,14 +118,38 @@ def menu_pedidos():
     ESCOLHAS_PEDIDO[escolha]()
 
 
-while True:
+def menu_itens():
     print("-------- MENU --------")
-    print("1 - Clientes")
-    print("2 - Produtos")
-    print("3 - Pedidos")
-    print("4 - Sair")
+    print("1 - Adicionar item ao pedido")
+    print("2 - Voltar")
 
     escolha = input("Escolha: ")
+
+    if not escolha.isdigit():
+        print("Digite um número válido")
+        return True
+
+    escolha = int(escolha)
+    if escolha == 2:
+        return False
+    if escolha not in ESCOLHAS_ITEM:
+        print("Digite um número válido")
+        return True
+
+    ESCOLHAS_ITEM[escolha]()
+    return True
+
+
+while True:
+    print("-------- MENU --------")
+    print("1 - Menu Clientes")
+    print("2 - Menu Produtos")
+    print("3 - Menu Pedidos")
+    print("4 - Menu Itens do pedido")
+    print("5 - Sair")
+    
+    escolha = input("Escolha: ")
+
     if not escolha.isdigit():
         print("Digite um número")
         continue
@@ -134,6 +164,8 @@ while True:
         menu_produtos()
     elif escolha == 3:
         menu_pedidos()
+    elif escolha == 4:
+        menu_itens()
     else:
         print("Digite um número válido")
         continue
