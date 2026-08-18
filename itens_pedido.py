@@ -1,69 +1,45 @@
-import os
 from mysql.connector import Error
 
-from database import conexao, cursor
-from pedidos import listar_pedidos
-from produtos import listar_produtos
+class ItemPedidoRepository:
+
+    def __init__(self,db):
+        self.db = db
 
 
-def adicionar_item():
-    os.system("cls")
+    def adicionar(self, id_pedido, id_produto, quantidade):
+        try:
+            sql = """
+            SELECT preco
+            FROM produtos
+            WHERE id_produto = %s
+            """
 
-    listar_pedidos()
+            self.db.cursor.execute(sql, (id_produto,))
+            resultado = self.db.cursor.fetchone()
 
-    id_pedido = input("Digite o Id do pedido: ")
-    if not id_pedido.isdigit():
-        print("Digite um Id válido")
-        return
-    id_pedido = int(id_pedido)
-    listar_produtos()
-    id_produto = input("Digite o Id do produto: ")
+            if resultado is None:
+                return False
 
-    if not id_produto.isdigit():
-        print("Digite um Id válido")
-        return
+            preco = resultado[0]
 
-    id_produto = int(id_produto)
+            sql = """
+            INSERT INTO itens_pedido
+            (id_pedido, id_produto, quantidade, preco_unitario)
+            VALUES (%s, %s, %s, %s)
+            """
 
-    quantidade = input("Digite a quantidade: ")
+            valores = (
+                id_pedido,
+                id_produto,
+                quantidade,
+                preco
+            )
 
-    if not quantidade.isdigit():
-        print("Digite uma quantidade válida")
-        return
-    quantidade = int(quantidade)
+            self.db.cursor.execute(sql, valores)
+            self.db.conexao.commit()
 
-    if quantidade <= 0:
-        print(" A quantidade deve ser maior que zero")
-        return
+            return True
 
-    try:
-        sql = """
-        SELECT preco
-        FROM produtos
-        WHERE id_produto = %s
-        """
-        cursor.execute(sql, (id_produto,))
-        resultado = cursor.fetchone()
-
-        if resultado is None:
-            print("Nenhum produto encontrado com esse Id")
-            return
-        preco = resultado[0]
-
-        sql = """
-        INSERT INTO itens_pedido
-        (id_pedido, id_produto, quantidade, preco_unitario)
-        VALUES (%s, %s, %s, %s)
-        """
-        valores = (
-            id_pedido,
-            id_produto,
-            quantidade,
-            preco
-        )
-        cursor.execute(sql, valores)
-        conexao.commit()
-        print("Item adicionado ao pedido com sucesso!")
-
-    except Error as erro:
-        print(f"Erro ao adicionar item ao pedido: {erro}")
+        except Error as erro:
+            print(f"Erro ao adicionar item ao pedido: {erro}")
+            return False
