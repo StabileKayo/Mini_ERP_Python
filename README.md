@@ -35,7 +35,7 @@ O projeto será expandido gradualmente com novas funcionalidades, simulando o de
 
 ### Próximas funcionalidades
 
-- [ ] Adicionar produtos ao pedido
+- [x] Adicionar produtos ao pedido
 - [ ] Atualização automática do estoque
 - [ ] Cálculo do valor total do pedido
 - [ ] Consulta detalhada de pedidos
